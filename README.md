@@ -1,36 +1,46 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Exercise - Data Loading - Local Storage and componentDidMount
+## Exercise - Fruit CRUD
 
-In file App.js - code me a silly list of fruits:
+Continue your amazing fruit journey in App.js:
 
-### Prep
-
-* Initialize in the constructor your state
-  * Add three fruit objects
-  * Each fruit object should have two properties: name & color (e.g. Cherry & red)
-* Display (=render) the list of fruits in your render() function please
-* Test if your fruit list is displayed correctly
-
-### Refactor - Add LocalStorage
-
-* Add the function componentDidMount() to your class component
-  => from now on this one will be responsible to load our initial data into state
-* In componentDidMount
-  * Fetch a list of fruits from localStorage using localStorage.getItem
-  * If you get nothing from local storage back
-    * Initialize some default fruits
-    => cut & paste your fruits from your constructor to here
-  * If you get something from local storage back
-    * Parse the fruit JSON string into an JS object
-  * Save your fruits to state using setState
+* Create a simple form with two inputs - for fruit name & color
+* On submit:
+  * Create a copy of your fruits array & store the new fruit in that one 
+  * Add your updated fruits array to localStrorage
+    * don't forget to "stringify" it before :)
+  * Lastly: Also update the state using setState
 
 ### Testing
 
-* Check in the browser -> Tab "Application" > "LocalStorage" if it now stores your fruit data
-* Change a color of a fruit directly in the browser - reload your page
-* Delete or add a fruit directly in the browser - reload your page
-* Works? Nice start :D
+* Check in the browser -> Tab "Application" if it receives your added fruits
+* Reload the page to see if your added fruits persist
+
+
+### Outsourcing
+
+* Now outsource your fruit item into a separate component Fruit.js
+* The Fruit component should be a functional component please (no class)
+  => functional because it does not manage state
+* In App.js: Render `<Fruit>` components and pass in the fruit data as prop
+* In your Fruit componet: Fetch your fruit item from props and display it
+
+### Bonus
+
+Use the color of the fruit as background color for your fruit card:
+
+  * create a css class in your App.css for each fruit color that you use 
+  * assign the class dynamically to your fruit item using className={`<yourFruitColor>`}
+  * check if all your fruits now have their color as background
+
+
+Implement full CRUD (Create-Read-Update-Delete):
+
+* Editing: When clicking a fruit - change the color
+  * Open a prompt dialog using JS prompt function to take the color as string
+  * Update color of fruit in state & local storage
+* Delete: Add a little X in your fruit card
+  * On click: Delete the fruit item from state & local storage
 
 
 ## Available Scripts
