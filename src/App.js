@@ -16,7 +16,7 @@ class App extends Component {
     // set defaults from local storage . if local storage is empty - set some items
     if( fruits) {
       fruits = JSON.parse(fruits)
-    } 
+    }
     // no local storage data? - initialize some defaults
     else {
       fruits = [

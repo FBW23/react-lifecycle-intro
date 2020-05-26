@@ -27,9 +27,10 @@ In file App.js - code me a silly list of fruits:
 
 ### Testing
 
-* Check in the browser -> Tab "Application" if it now stores your fruit data
-* Change a color of a fruit - reload your page
-* Delete or add a fruit - reload your page
+* Check in the browser -> Tab "Application" > "LocalStorage" if it now stores your fruit data
+* Change a color of a fruit directly in the browser - reload your page
+* Delete or add a fruit directly in the browser - reload your page
+* Works? Nice start :D
 
 
 ## Available Scripts
