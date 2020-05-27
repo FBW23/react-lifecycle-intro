@@ -59,7 +59,7 @@ class App extends Component {
 
   changeColor = (title) => {
     let fruitsCopy = [...this.state.fruits]
-    let fruitToUpdate = fruitsCopy.find(fruit => fruit.title == title)
+    let fruitToUpdate = fruitsCopy.find(fruit => fruit.title === title)
     fruitToUpdate.color = prompt("New color:", fruitToUpdate.color)
     localStorage.setItem("FRUITS", JSON.stringify(fruitsCopy))
     this.setState({fruits: fruitsCopy})

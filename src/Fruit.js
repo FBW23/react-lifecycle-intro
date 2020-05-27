@@ -4,7 +4,7 @@ const Fruit = (props) => {
   // fetch fruit from props
   let { fruit, changeColor, deleteFruit } = props;
   let fruitStyle = {
-    background: fruit.color
+    // background: fruit.color
   };
 
   return (

@@ -53,11 +53,11 @@ form input, form button {
   border: 1px solid white;  
   border-radius: 10px;
   margin: 5px;
-}
-
-form input{
   opacity: 0.8;
 }
+
+/* form input{
+} */
 
 .fruit {
   display: flex;
