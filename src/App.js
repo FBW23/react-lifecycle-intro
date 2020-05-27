@@ -9,12 +9,13 @@ class App extends Component {
 
     this.state = { 
       fruits: [],
-      fruitNew: {title: '', color: ''}
+      fruitNew: {title: '', color: ''},
     }
   }
 
   // load our initial data
   componentDidMount() {
+
     let fruits = localStorage.getItem("FRUITS")
 
     // set defaults from local storage . if local storage is empty - set some items
@@ -35,17 +36,20 @@ class App extends Component {
     this.setState({ fruits })
   }
 
-  handleFormTitleChange = (e) => {
-    this.setState({ fruitNew: { ...this.state.fruitNew, title: e.target.value}})
+  handleTitleInputChange = (e) => {
+    // copy object - overwriting single property
+    let fruitNew = { ...this.state.fruitNew, title: e.target.value}
+    this.setState({ fruitNew: fruitNew })
   }
 
-  handleFormColorChange = (e) => {
+  handleColorInputChange = (e) => {
+    // copy object - overwriting single property
     this.setState({ fruitNew: { ...this.state.fruitNew, color: e.target.value}})
   }
 
   addFruit = (e) => {
     e.preventDefault()
-    console.log(this.state.fruitNew)
+    // merge existing fruits with the new fruit
     let fruitsNew = [...this.state.fruits, this.state.fruitNew];
     localStorage.setItem("FRUITS", JSON.stringify(fruitsNew))
     this.setState({fruits: fruitsNew})
@@ -57,15 +61,27 @@ class App extends Component {
     this.setState({fruits: fruitsCopy})
   }
 
-  changeColor = (title) => {
+  updateColor = (title) => {
     let fruitsCopy = [...this.state.fruits]
     let fruitToUpdate = fruitsCopy.find(fruit => fruit.title === title)
+    
+    // demand new color from the user
     fruitToUpdate.color = prompt("New color:", fruitToUpdate.color)
     localStorage.setItem("FRUITS", JSON.stringify(fruitsCopy))
     this.setState({fruits: fruitsCopy})
   }
 
   render() {
+
+    
+    let jsxFruits = this.state.fruits.map(fruit => (
+      <Fruit 
+        fruit={fruit} 
+        changeColor={this.updateColor}
+        deleteFruit={this.deleteFruit}
+      ></Fruit>
+    ))
+
     return (
       <div className="App">
         <header className="App-header">
@@ -73,20 +89,12 @@ class App extends Component {
         </header>
         <main>
           <form onSubmit={this.addFruit}>
-            <input placeholder="Fruit..." onChange={this.handleFormTitleChange} value={this.state.fruitNew.title} />
-            <input placeholder="Color..." onChange={this.handleFormColorChange} value={this.state.fruitNew.color} />
+            <input placeholder="Fruit..." onChange={this.handleTitleInputChange} value={this.state.fruitNew.title} />
+            <input placeholder="Color..." onChange={this.handleColorInputChange} value={this.state.fruitNew.color} />
             <button type="submit">ADD</button>
           </form>
           {/* <h4>Fruits</h4> */}
-          <div className="cards fruits">
-            {this.state.fruits.map(fruit => (
-              <Fruit 
-                fruit={fruit} 
-                changeColor={this.changeColor}
-                deleteFruit={this.deleteFruit}
-              ></Fruit>
-            ))}
-          </div>
+          <div className="cards fruits">{jsxFruits}</div>
         </main>
       </div>
     );

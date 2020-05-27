@@ -64,6 +64,7 @@ form input, form button {
   justify-content: space-between;
 }
 
+/* color classes */
 .red { background: red; }
 .yellow { background: yellow; }
 .green { background: green; }

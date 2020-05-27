@@ -1,16 +1,14 @@
 import React from 'react';
 
 const Fruit = (props) => {
+
   // fetch fruit from props
   let { fruit, changeColor, deleteFruit } = props;
-  let fruitStyle = {
-    // background: fruit.color
-  };
 
   return (
-    <div className="fruit" style={fruitStyle} key={fruit.title} >
+    <div className="fruit" style={{ background: fruit.color}} key={fruit.title} >
       <span onClick={() => changeColor(fruit.title)}>{fruit.title}</span> 
-      <span onClick={() => deleteFruit(fruit.title)}>[X]</span>
+      <span onClick={() => deleteFruit(fruit.title)}>&#9747;</span>
     </div>
   );
 };
